@@ -204,6 +204,14 @@ func (l *IssueList) data() tui.TableData {
 	return data
 }
 
+func StoryPointsString(issue *jira.Issue) string {
+    if issue.Fields.StoryPoints > 0 {
+        return fmt.Sprintf("%.0f", issue.Fields.StoryPoints)
+    }
+    return ""
+}
+
+
 func (l *IssueList) assignColumns(columns []string, issue *jira.Issue) []string {
 	var bucket []string
 
@@ -231,6 +239,9 @@ func (l *IssueList) assignColumns(columns []string, issue *jira.Issue) []string 
 			bucket = append(bucket, formatDateTime(issue.Fields.Updated, jira.RFC3339, l.Display.Timezone))
 		case fieldLabels:
 			bucket = append(bucket, strings.Join(issue.Fields.Labels, ","))
+		case fieldStoryPoints:
+			bucket = append(bucket, StoryPointsString(issue))
+
 		}
 	}
 

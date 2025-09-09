@@ -153,6 +153,7 @@ func (sl *SprintList) tabularize(issues []*jira.Issue) tui.TableData {
 			formatDateTime(issue.Fields.Created, jira.RFC3339, sl.Display.Timezone),
 			formatDateTime(issue.Fields.Updated, jira.RFC3339, sl.Display.Timezone),
 			strings.Join(issue.Fields.Labels, ","),
+			StoryPointsString(issue),
 		})
 	}
 

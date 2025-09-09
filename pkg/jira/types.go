@@ -124,6 +124,7 @@ type IssueFields struct {
 	} `json:"issueLinks"`
 	Created string `json:"created"`
 	Updated string `json:"updated"`
+	StoryPoints float64 `json:"customfield_10106"`
 }
 
 // Field holds field info.
